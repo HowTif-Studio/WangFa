@@ -1,0 +1,11 @@
+.footer{
+  box-sizing: border-box;
+  padding: 0px 36px;
+  .contact{
+    display: flex;
+    align-items: center;
+    .item{
+      margin-right: 16px;
+    }
+  }
+}
