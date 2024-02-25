@@ -1,0 +1,48 @@
+@import "../../all";
+
+.about{
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 68px 0;
+  .title{
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 68px;
+  }
+  .content{
+    width: 978px;
+    font-size: 20px;
+    text-align: center;
+  }
+  .feature{
+    position: absolute;
+    display: flex;
+    width: 978px;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 700;
+    bottom: 68px;
+  }
+}
+
+.achievements{
+  padding: 49px 90px 68px 90px;
+  background-color: #D9D9D9;
+  .title{
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 49px;
+  }
+  .content{
+    font-size: 18px;
+    display: flex;
+    gap: 300px;
+    .list{
+      margin-left: 30px;
+    }
+  }
+}

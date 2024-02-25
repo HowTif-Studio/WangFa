@@ -1,0 +1,15 @@
+*{
+  font-family: "Gill Sans", sans-serif;
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+#pageContainer{
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 210px;    /* Footer height */
+}

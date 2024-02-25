@@ -17,7 +17,7 @@ public class Product extends Base{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private int id;
 
     @Column(name = "productname")
     private String productname;
@@ -37,11 +37,11 @@ public class Product extends Base{
     @Column(name = "Spec_pic")
     private String Spec_pic;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

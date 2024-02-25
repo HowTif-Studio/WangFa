@@ -26,7 +26,7 @@ public class UserController {
     ProductDaoImpl productDaoImpl;
     @RequestMapping(value = { "/product"}, method = RequestMethod.POST)
     public String product(@RequestBody Product product) {
-        productDaoImpl.CreateProduct()
+//        productDaoImpl.CreateProduct()
         return "product";
     }
 }

@@ -16,12 +16,12 @@ public class User extends Base {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "uid")
-    private String uid;
+    private int uid;
 
-    public String getId() {
+    public int getId() {
         return uid;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.uid = uid;
     }
 

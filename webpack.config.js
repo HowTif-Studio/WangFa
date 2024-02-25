@@ -6,13 +6,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        header: path.resolve(__dirname, './frontEnd/header/js/main.js'),
-        footer: path.resolve(__dirname, './frontEnd/footer/js/main.js'),
+        home: path.resolve(__dirname, './frontEnd/home/js/main.js'),
+        about: path.resolve(__dirname, './frontEnd/about/js/main.js'),
+        contact: path.resolve(__dirname, './frontEnd/contact/js/main.js'),
+        product: path.resolve(__dirname, './frontEnd/product/js/main.js'),
     },
     output: {
         publicPath: "/",
         path: path.resolve(__dirname, './src/main/resources/static'),
-        filename: 'javascript/[name].[contenthash:6].bundle.js',
+        // filename: 'javascript/[name].[contenthash:6].bundle.js',
+        filename: 'javascript/[name].bundle.js',
         assetModuleFilename: 'images/[hash][ext]',
     },
     module: {
@@ -39,16 +42,25 @@ module.exports = {
             template: path.resolve(__dirname, './frontEnd/templates/home.html'),
             filename: path.resolve(__dirname, './src/main/resources/templates/home.html'),
             inject: 'body',
+            chunks: ['home']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './frontEnd/templates/about.html'),
+            filename: path.resolve(__dirname, './src/main/resources/templates/about.html'),
+            inject: 'body',
+            chunks: ['about']
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './frontEnd/templates/product.html'),
             filename: path.resolve(__dirname, './src/main/resources/templates/product.html'),
             inject: 'body',
+            chunks: ['product']
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './frontEnd/templates/contact.html'),
             filename: path.resolve(__dirname, './src/main/resources/templates/contact.html'),
             inject: 'body',
+            chunks: ['contact']
         }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
@@ -57,7 +69,8 @@ module.exports = {
                 '!application.properties']
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[hash:6].css',
+            // filename: 'css/[name].[hash:6].css',
+            filename: 'css/[name].css',
         })
     ]
 };

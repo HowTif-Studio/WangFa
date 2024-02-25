@@ -1,42 +1,32 @@
 .header{
   width: 100%;
-  height: 120px;
-  box-sizing: border-box;
+  height: 84px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 36px;
-}
+  padding: 12px;
+  background-color: #415A77;
 
-.header-info{
-  display: flex;
-  .item{
-    margin-right: 36px;
-    border-left: 10px solid;
-    padding-left: 16px;
-  }
 }
 
 .menubar{
   width: 100%;
   height: 60px;
-  box-sizing: border-box;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   padding: 0px 36px;
-  background-color: burlywood;
   .tab{
     display: flex;
-    width: 100px;
-    height: 100%;
+    width: 80px;
+    height: 32px;
+    padding: 2px;
+    margin-right: 40px;
     text-decoration: none;
-    color: black;
-    font-size: 18px;
+    color: #FFFFFF;
+    font-size: 19px;
     justify-content: center;
     align-items: center;
-    &.active, &:hover{
-      background-color: wheat;
-    }
   }
 }
 
