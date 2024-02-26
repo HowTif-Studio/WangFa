@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface ProductDoa {
 
-    public int CreateProduct(Product product) ;
+    public Product CreateProduct(Product product) ;
 
-    public Product findProductId(String id);
+    public String ReadProductId(Integer id);
 
-    public int UpdateProduct();
+    public int UpdateProduct(Product product);
 
-    public int DeleteProduct(String id);
+    public int DeleteProduct(Integer id);
 
 }

@@ -26,7 +26,10 @@ public class UserController {
     ProductDaoImpl productDaoImpl;
     @RequestMapping(value = { "/product"}, method = RequestMethod.POST)
     public String product(@RequestBody Product product) {
-//        productDaoImpl.CreateProduct()
+        productDaoImpl.CreateProduct(product);
+        productDaoImpl.ReadProductId(product.getId());
+        productDaoImpl.UpdateProduct(product);
+        productDaoImpl.DeleteProduct(product.getId());
         return "product";
     }
 }
