@@ -22,6 +22,61 @@ const mockData = [
         productSize: '尺寸1',
         productSpecImg: '產品規格圖'
     },
+    {
+        img:'',
+        productName: '產品名稱2',
+        productSpec: '產品規格2',
+        productSize: '尺寸2',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱3',
+        productSpec: '產品規格3',
+        productSize: '尺寸3',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱4',
+        productSpec: '產品規格4',
+        productSize: '尺寸4',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱5',
+        productSpec: '產品規格5',
+        productSize: '尺寸5',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱6',
+        productSpec: '產品規格6',
+        productSize: '尺寸6',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱7',
+        productSpec: '產品規格7',
+        productSize: '尺寸7',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱8',
+        productSpec: '產品規格8',
+        productSize: '尺寸8',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱9',
+        productSpec: '產品規格9',
+        productSize: '尺寸9',
+        productSpecImg: '產品規格圖'
+    },{
+        img:'',
+        productName: '產品名稱10',
+        productSpec: '產品規格10',
+        productSize: '尺寸10',
+        productSpecImg: '產品規格圖'
+    },
 
 ];
 
