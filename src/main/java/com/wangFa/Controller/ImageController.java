@@ -25,17 +25,15 @@ public class ImageController {
 
     @RequestMapping(value = {"/image/{filename:.+}"}, produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] getFilename(@PathVariable String filename) throws IOException {
-        imageService.getImage();
-        return imageService.getImage();
+        return imageService.getImage(filename);
         }
 
 
     @Autowired
     UploadFile uploadFile;
-
     @RequestMapping(value = {"/upload"}, method = RequestMethod.POST)
-    public JSONObject uploadImg(HttpServletRequest request,String filePath ,MultipartFile file) {
-        return uploadFile.uploadImgFile(request, filePath, file);
+    public String uploadImg(@RequestParam("file") MultipartFile file) {
+        return uploadFile.uploadImgFile(file);
     }
 }
 

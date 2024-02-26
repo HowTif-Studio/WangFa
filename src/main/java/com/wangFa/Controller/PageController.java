@@ -28,4 +28,9 @@ public class PageController {
         return "contact";
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return "test";
+    }
+
 }

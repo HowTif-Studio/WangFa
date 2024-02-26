@@ -27,12 +27,12 @@ public class ImageService {
     @Autowired
     private ResourceLoader resourceLoader;
 
-    public byte[] getImage() throws IOException {
+    public byte[] getImage(String filename) throws IOException {
 
 //        ClassPathResource classPathResource = new ClassPathResource("*.jpg");
 //        InputStream inputStream =classPathResource.getInputStream();
 
-        Resource resource = (Resource) new ClassPathResource("/image/circle_1.png");
+        Resource resource = (Resource) new ClassPathResource("/image/"+filename);
         File file = resource.getFile();
         printFileInfo(file);
 

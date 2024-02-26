@@ -62,6 +62,11 @@ module.exports = {
             inject: 'body',
             chunks: ['contact']
         }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './frontEnd/templates/test.html'),
+            filename: path.resolve(__dirname, './src/main/resources/templates/test.html'),
+            inject: 'body',
+        }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
                 '**/*',

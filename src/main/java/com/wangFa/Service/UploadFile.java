@@ -1,55 +1,47 @@
 package com.wangFa.Service;
 
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Component
 public class UploadFile {
-    public JSONObject uploadImgFile(HttpServletRequest request,String filePath ,MultipartFile file) {
 
-        // 獲取完整的文件名
-        String trueFileName = file.getOriginalFilename();
-        // 獲取副檔名
-        String suffix = trueFileName.substring(trueFileName.lastIndexOf("."));
-        // 生成新文件的名字，時間 編號 副檔名
-        String fileName = System.currentTimeMillis() + "_" + getRandomNumber(1, 999) + suffix;
-        // 獲取項目地址
-        String itemPath = getItemPath(request);
+    @Value("${file.upload.path}")
+    private String filePath;
 
-        // 判斷當前要上傳的路徑是否存在
-        File targetFile = new File(filePath, fileName);
-        if (!targetFile.exists()) {
-            targetFile.getParentFile().mkdirs();
+    public String uploadImgFile(MultipartFile file) {
+
+        // 取得上傳圖片名稱
+        String filename = file.getOriginalFilename();
+        // 取得上傳圖片副檔名
+        String suffixName = filename.substring(filename.lastIndexOf("."));
+        // 定義路徑
+        String path = filePath;
+        // 新檔名
+//        String newImgName = UUID.randomUUID().toString() + suffixName;
+        String newImgName = System.currentTimeMillis()+suffixName;
+
+        // 新增一個 File 用於判斷路徑是否存在
+        File filepath = new File(path, newImgName);
+
+        // 判斷路徑是否存在，如果不存在就建立新的路徑
+        if (!filepath.getParentFile().exists()) {
+            filepath.getParentFile().mkdirs();
         }
-
-        //保存文件
         try {
-            file.transferTo(targetFile);
-        } catch (Exception e) {
+            // 將上傳的圖片，存在 path 底下
+            file.transferTo(new File(path + File.separator + newImgName));
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return "/image/" + newImgName;
 
-        JSONObject res = new JSONObject();
-        // 圖片上傳後地址
-        res.put("url", itemPath + fileName); ///圖片地址和上傳後的文件名
-        // 圖片上傳的狀態 1成功0失敗
-        res.put("success", 1);
-        // 圖片上傳回傳的信息
-        res.put("message", "upload success!");
-
-        return res;
-    }
-
-    private String getRandomNumber(int min, int max) {
-        return String.valueOf((int)(Math.random() * (max - min + 1)) + min);
-    }
-
-    private String getItemPath(HttpServletRequest request) {
-        // 在此實現獲取項目地址的邏輯，例如：
-        // return request.getSession().getServletContext().getRealPath("/");
-        return "";
     }
 }
