@@ -1,13 +1,9 @@
 package com.wangFa.Dao;
 
 import com.wangFa.Model.Product;
-import org.hibernate.annotations.Comment;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 
-public interface ProductDoa {
+public interface ProductDao {
 
     public Product CreateProduct(Product product) ;
 

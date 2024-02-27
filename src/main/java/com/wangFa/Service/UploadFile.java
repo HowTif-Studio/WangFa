@@ -1,17 +1,21 @@
 package com.wangFa.Service;
 
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
+
 @Component
-public class UploadFile {
+public class UploadFile{
 
     @Value("${file.upload.path}")
     private String filePath;
@@ -27,6 +31,7 @@ public class UploadFile {
         // 新檔名
 //        String newImgName = UUID.randomUUID().toString() + suffixName;
         String newImgName = System.currentTimeMillis()+suffixName;
+
 
         // 新增一個 File 用於判斷路徑是否存在
         File filepath = new File(path, newImgName);

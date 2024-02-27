@@ -1,20 +1,16 @@
 package com.wangFa.Dao;
 
 import com.wangFa.Model.Product;
-import com.wangFa.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.util.Collections;
-import java.util.List;
 
 
 @Repository
-public class ProductDaoImpl implements ProductDoa {
+public class ProductDaoImpl implements ProductDao {
 
 
     @Autowired

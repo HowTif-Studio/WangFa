@@ -42,7 +42,6 @@ public class ImageService {
     }
 
     private void printFileInfo(File file) {
-        System.out.println(file.canRead());
         System.out.println(file.getName()); // spring.png （檔案名稱）
         System.out.println(file.getPath()); // /Users/.../workspace/demo/target/classes/static/spring.png （檔案系統的路徑）
         System.out.println(file.length()); // 21113 （檔案大小21113bytes）
