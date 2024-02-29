@@ -14,7 +14,9 @@ public class ImagesUploadConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 將讀取圖片路徑 /image/** 映射到真實的圖片存放路徑上
-        registry.addResourceHandler("/image/**").addResourceLocations("file:"+filePath);
+        registry.addResourceHandler("/javascript/**").addResourceLocations("classpath:/static/javascript/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+        registry.addResourceHandler("/image/**").addResourceLocations("file:" + filePath);
     }
 }
 
