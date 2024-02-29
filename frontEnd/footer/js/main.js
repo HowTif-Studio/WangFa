@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 const htmlMap = {
     main: `<div class="info">
-              <img class="logo">
+              <div class="logo"></div>
               <ul class="left">
                 <li>電話：(02)2694-5249</li>
                 <li>傳真：(02)2693-5200</li>
