@@ -23,10 +23,11 @@ public class ImageController {
     @Autowired
     ImageService imageService;
 
-    @RequestMapping(value = {"/image/{filename:.+}"}, produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] getFilename(@PathVariable String filename) throws IOException {
-        return imageService.getImage(filename);
-        }
+//    會跟 config 配置有衝突
+//    @RequestMapping(value = {"/image/{filename:.+}"}, produces = MediaType.IMAGE_PNG_VALUE)
+//    public byte[] getFilename(@PathVariable String filename) throws IOException {
+//        return imageService.getImage(filename);
+//        }
 
 
     @Autowired
