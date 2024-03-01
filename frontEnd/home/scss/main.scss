@@ -1,36 +1,32 @@
 @import "../../all";
 
 .banner{
+  position: relative;
   width: 100%;
   height: 589.33px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #F2F2F2;
-  z-index: -1;
 
   .banner-title{
-    position: absolute;
-    z-index: 1;
     font-size: 32px;
     width: 128px;
     height: 45px;
-    top: 261px;
-    left: 890px;
     color: #FFFFFF;
-
+    z-index: 1;
   }
   .banner-text{
-    position: absolute;
-    z-index: 1;
     font-size: 28px;
     width: 700px;
     height: 39px;
-    top: 331.09px;
-    left: 610px;
     color: #FFFFFFC7;
+    z-index: 1;
+    margin-top: 26px;
   }
   img{
+    position: absolute;
     width: 100%;
     height: 100%;
   }
@@ -38,21 +34,21 @@
 
 .about{
   width: 100%;
-  height: 422px;
+  height: 653px;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #F2F2F2;
   padding: 0px 90px;
 
   .about-img{
-    width: 588px;
-    height: 329px;
-    margin-right: 48px;
+    width: 600px;
+    height: 362px;
+    margin-right: 96px;
   }
   .about-content{
-    width: 662px;
-    height: 329px;
-    padding-top: 20px;
+    width: 499px;
+    height: 362px;
     .title{
       font-size: 28px;
       font-weight: 700;
@@ -61,23 +57,41 @@
       font-size: 19px;
       font-weight: 600;
       color: #415A77;
+      margin-top: 12px;
     }
     .content{
       font-size: 20px;
-      margin-top: 38px;
+      margin-top: 24px;
+    }
+    .more{
+      width: 112px;
+      height: 46px;
+      background-color: #415A77;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      margin-top: 44px;
     }
   }
 }
 
 .product{
   width: 100%;
-  height: 598px;
-  background-color: #F2F2F2;
+  height: 649px;
+  display: flex;
+  justify-content: center;
+  background-color: #F9F9F9;
   padding: 49px 90px 57px 90px;
+  .content{
+    width: 1195px;
+  }
   .title{
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 17px;
+    color: #415A77;
   }
   .description{
     font-size: 20px;
