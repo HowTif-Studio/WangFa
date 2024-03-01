@@ -2,7 +2,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./frontEnd/home/scss/main.scss ***!
   \***********************************************************************************************************************/
 * {
-  font-family: "Gill Sans", sans-serif;
+  font-family: "PingFang TC", sans-serif;
   box-sizing: border-box;
   padding: 0px;
   margin: 0px; }
@@ -12,16 +12,38 @@
   min-height: 100vh; }
 
 #content-wrap {
-  padding-bottom: 210px;
+  padding-bottom: 269px;
   /* Footer height */ }
 
 .banner {
   width: 100%;
-  height: 265px;
+  height: 589.33px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F2F2F2; }
+  background-color: #F2F2F2;
+  z-index: -1; }
+  .banner .banner-title {
+    position: absolute;
+    z-index: 1;
+    font-size: 32px;
+    width: 128px;
+    height: 45px;
+    top: 261px;
+    left: 890px;
+    color: #FFFFFF; }
+  .banner .banner-text {
+    position: absolute;
+    z-index: 1;
+    font-size: 28px;
+    width: 700px;
+    height: 39px;
+    top: 331.09px;
+    left: 610px;
+    color: #FFFFFFC7; }
+  .banner img {
+    width: 100%;
+    height: 100%; }
 
 .about {
   width: 100%;
@@ -42,6 +64,10 @@
     .about .about-content .title {
       font-size: 28px;
       font-weight: 700; }
+    .about .about-content .sub-title {
+      font-size: 19px;
+      font-weight: 600;
+      color: #415A77; }
     .about .about-content .content {
       font-size: 20px;
       margin-top: 38px; }
@@ -143,7 +169,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px;
-  background-color: #415A77; }
+  background-color: #FFFFFF; }
 
 .menubar {
   width: 100%;
@@ -159,7 +185,7 @@
     padding: 2px;
     margin-right: 40px;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #415A77;
     font-size: 19px;
     justify-content: center;
     align-items: center; }
@@ -171,24 +197,28 @@
   position: absolute;
   bottom: 0px;
   width: 100%;
-  height: 210px;
+  height: 269px;
   display: flex;
   align-items: center;
-  background-color: #F5F5F5; }
+  background-color: #415A77;
+  color: #FFFFFF; }
   .footer .info {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 32.4px; }
     .footer .info .logo {
       width: 204px;
       height: 46px;
       position: absolute;
       top: 51px;
       left: 116px;
-      background-color: #999999; }
+      background-color: #415A77; }
     .footer .info .left {
       position: absolute;
       top: 35px;
@@ -199,11 +229,13 @@
       top: 35px;
       left: calc(50% + 51px);
       transform: translate(calc(50% + 51px), 0); }
+    .footer .info ul li {
+      list-style: none; }
   .footer .copyRight {
     position: absolute;
     bottom: 53px;
     width: 100%;
     display: flex;
     justify-content: center;
-    font-size: 20px; }
+    font-size: 14px; }
 
