@@ -25,17 +25,17 @@
     font-size: 16px;
     background-color: #F9F9F9;
     display: flex;
+    justify-content: center;
+    align-items: center;
     .description-text{
-      width: 1095px;
+      width: 210px;
       height: 57px;
-      top: 50px;
-      left: 413px;
-      gap: 161px;
       color: #555555;
       font-size: 16px;
       .description-text-info{
         font-size: 19px;
         color: #333333;
+        line-height: 35px;
       }
     }
   }
