@@ -5,77 +5,76 @@ import {init as footer} from "../../footer/js/main";
 const htmlMap = {
     productBlock: (data) => {
         return `<div class="product-block">
-                    <img class="product-img" src="${data.img}">
+                    <img class="product-img" src="${data.product_pic}">
                     <div class="product-name">${data.productName}</div>
-                    <div class="product-spec">${data.productSpec}</div>
-                    <div class="product-size">${data.productSize}</div>
-                    <button class="product-specImg">${data.productSpecImg}</button>
+                    <div class="product-spec">${data.traits} · ${data.size}</div>
+                    <button class="product-specImg">${data.productspec_pic}</button>
                 </div>`
     }
 };
 
 const mockData = [
     {
-        img:'',
+        product_pic:'',
         productName: '產品名稱1',
-        productSpec: '產品規格1',
-        productSize: '尺寸1',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格1',
+        size: '尺寸1',
+        productspec_pic: '產品規格圖'
     },
     {
-        img:'',
+        product_pic:'',
         productName: '產品名稱2',
-        productSpec: '產品規格2',
-        productSize: '尺寸2',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格2',
+        size: '尺寸2',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱3',
-        productSpec: '產品規格3',
-        productSize: '尺寸3',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格3',
+        size: '尺寸3',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱4',
-        productSpec: '產品規格4',
-        productSize: '尺寸4',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格4',
+        size: '尺寸4',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱5',
-        productSpec: '產品規格5',
-        productSize: '尺寸5',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格5',
+        size: '尺寸5',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱6',
-        productSpec: '產品規格6',
-        productSize: '尺寸6',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格6',
+        size: '尺寸6',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱7',
-        productSpec: '產品規格7',
-        productSize: '尺寸7',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格7',
+        size: '尺寸7',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱8',
-        productSpec: '產品規格8',
-        productSize: '尺寸8',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格8',
+        size: '尺寸8',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱9',
-        productSpec: '產品規格9',
-        productSize: '尺寸9',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格9',
+        size: '尺寸9',
+        productspec_pic: '產品規格圖'
     },{
-        img:'',
+        product_pic:'',
         productName: '產品名稱10',
-        productSpec: '產品規格10',
-        productSize: '尺寸10',
-        productSpecImg: '產品規格圖'
+        traits: '產品規格10',
+        size: '尺寸10',
+        productspec_pic: '產品規格圖'
     },
 
 ];
