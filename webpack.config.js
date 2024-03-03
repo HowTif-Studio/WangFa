@@ -10,6 +10,7 @@ module.exports = {
         about: path.resolve(__dirname, './frontEnd/about/js/main.js'),
         contact: path.resolve(__dirname, './frontEnd/contact/js/main.js'),
         product: path.resolve(__dirname, './frontEnd/product/js/main.js'),
+        login: path.resolve(__dirname,'./frontEnd/login/js/main.js'),
     },
     output: {
         publicPath: "/",
@@ -67,6 +68,14 @@ module.exports = {
             filename: path.resolve(__dirname, './src/main/resources/templates/test.html'),
             inject: 'body',
         }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './frontEnd/templates/login.html'),
+            filename: path.resolve(__dirname, './src/main/resources/templates/login.html'),
+            inject: 'body',
+            chunks: ['login']
+        }),
+
+
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
                 '**/*',

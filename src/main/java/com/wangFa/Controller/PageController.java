@@ -33,4 +33,9 @@ public class PageController {
         return "test";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
 }
