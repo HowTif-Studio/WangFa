@@ -14,16 +14,20 @@ const htmlMap = {
 
 const mockData = [
     {
-        productName: '產品名稱1',
-        img:''
+        productName: '防臭式鑄鐵蓋',
+        img:'/image/circle_1.png'
     },
     {
-        productName: '產品名稱2',
-        img:''
+        productName: '防臭式鑄鐵蓋',
+        img:'/image/square_circle_1.png'
     },
     {
-        productName: '產品名稱3',
-        img:''
+        productName: '防臭式鑄鐵蓋',
+        img:'/image/square_1.png'
+    },
+    {
+        productName: '自設污水',
+        img:'/image/square_1.png'
     }
 ];
 

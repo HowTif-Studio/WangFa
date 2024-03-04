@@ -29,18 +29,27 @@
                         </div>
                     </div>
 
-                        <div class="input">
-                            <div class="row">
-                                <div class="text">姓名</div>
+                        <div class="input-wrap">
+                            <div class="inputBlock">
+                                <div class="row name">
+                                    <label class="name_label" for="name_input">姓名</label>
+                                    <input type="text" id="name_input">
+                                </div>
+                                <div class="row email">
+                                    <div class="text">電子郵件</div>
+                                    <input type="email" id="email_input">
+                                </div>
+                                <div class="row phone">
+                                    <label class="phone_label" for="phone_input">聯絡電話</label>
+                                    <input type="number" id="phone_input">
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="text">電子郵件</div>
-                            </div>
-                            <div class="row">
-                                <div class="text">聯絡電話</div>
-                            </div>
-                            <div class="row">
-                                <div class="text">內容</div>
+
+                            <div class="inputBlock2">
+                                <div class="row content">
+                                    <label class="content_label" for="content_input">內容</label>
+                                    <textarea id="content_input"></textarea>
+                                </div>
                             </div>
                         </div>
                         <button class="confirm">送出</button>
