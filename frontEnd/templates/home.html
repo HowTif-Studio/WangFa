@@ -34,26 +34,56 @@
           <div class="title">產品介紹</div>
           <div class="description">各式鑄鐵蓋、污水蓋</div>
           <div class="product-container"></div>
-          <button class="detail">查看完整商品內容</button>
+          <div class="buttonBlock">
+            <button class="detail">查看完整商品內容</button>
+          </div>
         </div>
       </div>
       <div class="contact">
         <div class="title">聯絡我們</div>
-        <div class="input">
-          <div class="row">
-            <div class="text">姓名</div>
+        <div class="content-wrap">
+          <div class="inputBlock">
+            <div class="row name">
+              <label class="name_label" for="name_input">姓名</label>
+              <input type="text" id="name_input">
+            </div>
+
+            <div class="row phone">
+              <label class="phone_label" for="phone_input">聯絡電話</label>
+              <input type="number" id="phone_input">
+            </div>
+            <div class="row email">
+              <label class="email_label" for="email_input">電子郵件</label>
+              <input type="email" id="email_input">
+            </div>
+            <div class="row content">
+              <label class="content_label" for="content_input">內容</label>
+              <textarea id="content_input"></textarea>
+            </div>
+            <div class="buttonBlock">
+              <button class="confirm">送出</button>
+            </div>
           </div>
-          <div class="row">
-            <div class="text">電子郵件</div>
+          <div class="infoBlock">
+            <div class="info_item phone">
+              <div class="info_title">電話</div>
+              <div class="info_content">(02)2694-5249</div>
+            </div>
+            <div class="info_item mobile">
+              <div class="info_title">行動電話</div>
+              <div class="info_content">0932-022737</div>
+            </div>
+            <div class="info_item tax">
+              <div class="info_title">傳真</div>
+              <div class="info_content">(02)2693-5200</div>
+            </div>
+            <div class="info_item email">
+              <div class="info_title">E-mail</div>
+              <div class="info_content">wang.fa@msa.hinet.net</div>
+            </div>
           </div>
-          <div class="row">
-            <div class="text">聯絡電話</div>
-          </div>
-          <div class="row">
-            <div class="text">內容</div>
-          </div>
+
         </div>
-        <button class="confirm">送出</button>
       </div>
     </div>
     <div class="footer"></div>

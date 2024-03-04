@@ -89,13 +89,16 @@
   }
   .title{
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 600;
+    line-height: 36px;
     margin-bottom: 17px;
-    color: #415A77;
   }
   .description{
-    font-size: 20px;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 27px;
     margin-bottom: 56px;
+    color: #415A77;
   }
   .product-container{
     margin-bottom: 79px;
@@ -130,17 +133,23 @@
         }
       }
   }
+  .buttonBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   button.detail{
     width: 204px;
     height: 46px;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #999999;
+    background-color: #415A77;
     border: none;
+    border-radius: 4px;
     &:hover{
       cursor: pointer;
     }
@@ -149,7 +158,7 @@
 
 .contact{
   width: 100%;
-  height: 504px;
+  height: 747px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -161,27 +170,103 @@
     font-weight: 700;
     margin-bottom: 73px;
   }
-  .input{
-    height: 100%;
-    .row{
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-  }
-  button.confirm{
-    width: 204px;
-    height: 46px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #FFFFFF;
+  .content-wrap{
+    width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: #999999;
-    border: none;
-    margin-top: 16px;
-    &:hover{
-      cursor: pointer;
+    gap: 207px;
+    .inputBlock{
+      width: 562px;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+      "name phone"
+      "email email"
+      "content content"
+      "buttonBlock buttonBlock";
+      column-gap: 16px;
+      .row{
+        display: flex;
+        flex-direction: column;
+        font-size: 18px;
+        margin-bottom: 30px;
+        gap: 8px;
+        label{
+          font-size: 16px;
+          line-height: 22px;
+          color: #333333;
+        }
+        input{
+          height: 46px;
+          border: 1px solid #E0E1DD;
+          border-radius: 4px;
+        }
+        textarea{
+          height: 144px;
+          border: 1px solid #E0E1DD;
+          border-radius: 4px;
+        }
+      }
+      .name{
+        grid-area: name;
+      }
+      .phone{
+        grid-area: phone;
+      }
+      .email{
+        grid-area: email;
+      }
+      .content{
+        grid-area: content;
+      }
+      .buttonBlock{
+        grid-area: buttonBlock;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        button.confirm{
+          width: 80px;
+          height: 46px;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 22.4px;
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #415A77;
+          border: none;
+          border-radius: 4px;
+          margin-top: 16px;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .infoBlock{
+      width: 210px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      .info_item{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .info_title{
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 22.4px;
+          color: #555555;
+        }
+        .info_content{
+          font-size: 19px;
+          font-weight: 600;
+          line-height: 26.6px;
+          color: #333333;
+        }
+      }
     }
   }
 }
