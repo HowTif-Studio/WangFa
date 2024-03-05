@@ -7,24 +7,28 @@ const htmlMap = {
     productBlock: (data) => {
         return `<div class="product-block">
                     <img class="product-img" src="${data.product_pic}">
-                    <div class="title2">
-                        <div class="text">產品名稱：
-                            <input value="${data.productName}"></input>
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="form">
+                            <div class="text">產品名稱：
+                                <input value="${data.productName}"></input>
+                            </div>
+                            <div class="text">形狀：
+                                <input value="${data.traits}"</input>
+                            </div>
+                            <div class="text">尺寸：
+                                <input value="${data.size}"></input>
+                            </div>
+                            
+                            <div class="text">產品圖：
+                                <input type="file" name="img_spec" id="productspec_pic"></input>
+                            </div>
+                            <div class="text">規格圖：
+                                <input type="file" name="img" id="product_pic"></input>
+                            </div>
+                            
+                            <input value='送出' type="button">
                         </div>
-                        <div class="text">形狀：
-                            <input value="${data.traits}"</input>
-                        </div>
-                        <div class="text">尺寸：
-                            <input value="${data.size}"></input>
-                        </div>
-                        <div class="text">產品圖：
-                            <button type="file" name="img_spec" id="productspec_pic">選擇檔案</button>
-                        </div>
-                        <div class="text">規格圖：
-                            <button type="file" name="img" id="product_pic">選擇檔案</button>
-                        </div>
-                        <input value='送出' type="button" onclick="uploadFile()">
-                    </div>
+                    <from/>        
               </div>`
     }
 };
