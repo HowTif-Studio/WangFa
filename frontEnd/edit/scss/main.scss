@@ -57,7 +57,9 @@
           display: inline-block;
           margin-top: 10px;
         }
-
+        input[type=file]{
+          display: none;
+        }
         input[type=button]{
           height: 30px;
           border: 1px solid #E0E1DD;

@@ -20,10 +20,12 @@ const htmlMap = {
                             </div>
                             
                             <div class="text">產品圖：
-                                <input type="file" name="img_spec" id="productspec_pic"></input>
+                                <input type="file" name="img_spec" id="productspec_pic">
+                                <label for="productspec_pic">選擇檔案</label>
                             </div>
                             <div class="text">規格圖：
-                                <input type="file" name="img" id="product_pic"></input>
+                                <input type="file" name="img" id="product_pic">
+                                <label for="product_pic">選擇檔案</label>
                             </div>
                             
                             <input value='送出' type="button">
@@ -179,23 +181,37 @@ $(window).on('load', function () {
         alert("請選擇圖片");
         return false;
     } else {
+        // 使用 AJAX 函式發送 HTTP POST 請求
         $.ajax({
-        url: "/upload",
-        type: "POST",
-        data: myform,
-        async: false,
-        contentType: false,
-        processData: false,
-        success: function (result) {
-            console.log(result);
-            alert("上傳成功！");
-            $("#div_show_img").html("<img id='input_img' src='" + result + "'>");
-            $("#imgPath").attr("value", result);
-            $("#div_upload").removeClass("show");
-        },
+            // 指定請求的目標 URL
+            url: "/upload",
+            // 指定請求方法為 POST
+            type: "POST",
+            // 設置請求的數據為 FormData 物件，即所選檔案
+            data: myform,
+            // 設置為同步請求，等待服務器響應後再執行後續的程式碼
+            async: false,
+            // 禁止設置請求頭的 Content-Type，由瀏覽器自動設置
+            contentType: false,
+            // 禁止將數據轉換為查詢字符串，由於我們使用 FormData，因此不需要進行轉換
+            processData: false,
+            // 定義請求成功後的回調函式，處理服務器的響應數據
+            success: function (result) {
+                console.log(result);
+                // 提示用戶上傳成功
+                alert("上傳成功！");
+                // 在網頁中展示上傳的圖片
+                $("#div_show_img").html("<img id='input_img' src='" + result + "'>");
+                // 將上傳的圖片路徑設置到隱藏的 input 標籤中
+                $("#imgPath").attr("value", result);
+                // 移除上傳圖片區域的顯示
+                $("#div_upload").removeClass("show");
+            },
+            // 定義請求失敗時的回調函式，處理錯誤情況
             error: function (data) {
+                // 提示用戶錯誤訊息
                 alert("錯誤");
             }
         });
     }
-}
+    }
