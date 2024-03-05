@@ -38,4 +38,9 @@ public class PageController {
         return "login";
     }
 
+    @GetMapping("/edit")
+    public String edit() {
+        return "edit";
+    }
+
 }

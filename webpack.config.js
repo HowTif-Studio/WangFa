@@ -11,6 +11,7 @@ module.exports = {
         contact: path.resolve(__dirname, './frontEnd/contact/js/main.js'),
         product: path.resolve(__dirname, './frontEnd/product/js/main.js'),
         login: path.resolve(__dirname,'./frontEnd/login/js/main.js'),
+        edit: path.resolve(__dirname,'./frontEnd/edit/js/main.js'),
     },
     output: {
         publicPath: "/",
@@ -73,6 +74,12 @@ module.exports = {
             filename: path.resolve(__dirname, './src/main/resources/templates/login.html'),
             inject: 'body',
             chunks: ['login']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './frontEnd/templates/edit.html'),
+            filename: path.resolve(__dirname, './src/main/resources/templates/edit.html'),
+            inject: 'body',
+            chunks: ['edit']
         }),
 
 
