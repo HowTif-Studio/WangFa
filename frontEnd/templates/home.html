@@ -26,7 +26,7 @@
           <div class="sub-title">豐富經驗 品質優先 專業團隊</div>
           <div class="content">自1978年創立以來，王發機械一直以卓越的品質和創新的技術聞名。專注於生產防臭式鑄鐵蓋的公司，致力於為城市基礎建設提供可靠、耐用的解決方案。</div>
           <div class="content">探索我們的產品和服務，了解如何在您的項目中選擇最可靠的鑄鐵蓋，提升城市品質，打造更美好的生活。</div>
-          <button class="more">閱讀更多</button>
+          <button class="more" onclick="window.location.href='../about';">閱讀更多</button>
         </div>
       </div>
       <div class="product">
@@ -35,7 +35,7 @@
           <div class="description">各式鑄鐵蓋、污水蓋</div>
           <div class="product-container"></div>
           <div class="buttonBlock">
-            <button class="detail">查看完整商品內容</button>
+            <button class="detail" onclick="window.location.href='../product';">查看完整商品內容</button>
           </div>
         </div>
       </div>
@@ -61,8 +61,10 @@
               <textarea id="content_input"></textarea>
             </div>
             <div class="buttonBlock">
-              <button class="confirm">送出</button>
+              <button class="confirm" id="sent">送出</button>
+              <a id="mailTo"></a>
             </div>
+
           </div>
           <div class="infoBlock">
             <div class="info_item phone">

@@ -80,6 +80,7 @@
           height: 46px;
           border: 1px solid #E0E1DD;
           border-radius: 4px;
+          text-indent: 5px;
         }
       }
     }
@@ -118,6 +119,7 @@
           width: 400px;
           border: 1px solid #E0E1DD;
           border-radius: 4px;
+          text-indent: 5px;
         }
       }
     }
@@ -139,12 +141,8 @@
     }
   }
 
-  form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
 
-    input[type=submit] {
+    button {
       width: 320px;
       height: 51px;
       display: flex;
@@ -161,4 +159,3 @@
       }
     }
   }
-}

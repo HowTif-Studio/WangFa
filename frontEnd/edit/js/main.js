@@ -164,7 +164,7 @@ $(window).on('load', function () {
 
 // 上傳
 
-    function uploadFile() {
+    function upload() {
 // ？？？創建一個 FormData 物件
         var updateSpec = new FormData();
         var update = new FormData();
