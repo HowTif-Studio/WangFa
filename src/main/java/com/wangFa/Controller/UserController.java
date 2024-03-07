@@ -21,15 +21,4 @@ public class UserController {
         userDao.findByUsername(user.getusername() , user.getpassword());
         return "User";
     }
-
-    @Autowired
-    ProductDaoImpl productDaoImpl;
-    @RequestMapping(value = { "/product"}, method = RequestMethod.POST)
-    public String product(@RequestBody Product product) {
-        productDaoImpl.CreateProduct(product);
-        productDaoImpl.ReadProductId(product.getId());
-        productDaoImpl.UpdateProduct(product);
-        productDaoImpl.DeleteProduct(product.getId());
-        return "product";
-    }
 }

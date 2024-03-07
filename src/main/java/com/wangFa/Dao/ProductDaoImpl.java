@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 
 @Repository
@@ -56,8 +57,16 @@ public class ProductDaoImpl implements ProductDao {
 
         }
 
-        public int UpdateProduct (Product product){
-            String sqlUpdate = " UPDATE wangfa_db.product "
+    @Override
+    public List<Product> getAllProducts() {
+        String sqlfind = " SELECT id, des, product_pic, productname, size, spec_pic, traits FROM product";
+        List<Product> result = jdbcTemplate.query(sqlfind, new BeanPropertyRowMapper<Product>(Product.class));
+
+        return result;
+    }
+
+    public int UpdateProduct (Product product){
+            String sqlUpdate = " UPDATE product "
                     + " SET "
                     + "id = ?, productname = ?, size = ?, traits = ?, des = ?, product_pic = ?, spec_picture = ?"
                     + " WHERE "

@@ -1,5 +1,6 @@
 import "../scss/main.scss";
 import $ from "jquery";
+import axios from "axios";
 import {init as header} from "../../header/js/main";
 import {init as footer} from "../../footer/js/main";
 
