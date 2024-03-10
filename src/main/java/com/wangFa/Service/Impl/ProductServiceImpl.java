@@ -1,6 +1,6 @@
 package com.wangFa.Service.Impl;
 
-import com.wangFa.Dao.ProductDaoImpl;
+import com.wangFa.Dao.Impl.ProductDaoImpl;
 import com.wangFa.Model.Product;
 import com.wangFa.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +22,25 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductById(int id) {
-        return null;
+        Product Product = productDao.getProductById(id);
+        return Product;
     }
 
     @Override
-    public Product addProduct(Product product) {
-        return null;
+    public String addProduct(Product product) {
+        String Product = productDao.addProduct(product);
+        return Product;
     }
 
     @Override
     public int updateProduct(Product product) {
-        return 0;
+        int Product = productDao.updateProduct(product);
+        return Product;
     }
 
     @Override
-    public int deleteProduct(int productId) {
-        return 0;
+    public int deleteProduct(int id) {
+        int Product = productDao.deleteProduct(id);
+        return Product;
     }
 }
