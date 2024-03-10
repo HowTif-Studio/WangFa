@@ -21,56 +21,56 @@ const stateMap= {
 
 const mockData = [
     {
-        product_pic:'/image/square_1.png',
+        product_pic:'/image/60_square.png',
         productName: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '60*60',
         productspec_pic: '/image/square_1.png'
     },
     {
-        product_pic:'/image/square_1.png',
+        product_pic:'/image/70_square.png',
         productName: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '70*70',
         productspec_pic: '產品規格圖'
     },{
-        product_pic:'/image/square_1.png',
+        product_pic:'/image/80_square.png',
         productName: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '80*80',
         productspec_pic: '產品規格圖'
     },{
-        product_pic:'/image/square_1.png',
+        product_pic:'/image/60_circle.png',
         productName: '防臭式鑄鐵蓋',
         traits: '圓形',
         size: '60cm∮',
         productspec_pic: '產品規格圖'
     },{
-        product_pic:'/image/square_1.png',
+        product_pic:'/image/70_circle.png',
         productName: '防臭式鑄鐵蓋',
         traits: '圓形',
         size: '70cm∮',
         productspec_pic: '產品規格圖'
     },{
-        product_pic:'/image/circle_1.png',
+        product_pic:'/image/80_circle.png',
         productName: '自設污水蓋',
         traits: '圓形',
         size: '80cm∮',
         productspec_pic: '產品規格圖'
     },{
-        product_pic:'/image/circle_1.png',
+        product_pic:'/image/60_circle_square.png',
         productName: '自設污水蓋',
         traits: '方框圓蓋',
         size: '60x60cm∮',
         productspec_pic: '產品規格圖'
     },{
-        product_pic:'/image/circle_1.png',
+        product_pic:'/image/70_circle_square.png',
         productName: '自設污水蓋',
         traits: '方框圓蓋',
         size: '70x70cm∮',
         productspec_pic: '產品規格圖'
     },{
-        product_pic:'/image/circle_1.png',
+        product_pic:'/image/80_circle_square.png',
         productName: '自設污水蓋',
         traits: '方框圓蓋',
         size: '80x80cm∮',

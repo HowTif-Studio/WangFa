@@ -16,18 +16,18 @@ const htmlMap = {
 const mockData = [
     {
         productName: '防臭式鑄鐵蓋',
-        img:'/image/circle_1.png',
+        img:'/image/square.png',
         size:"方型 · 60x60 70x70 80x80"
     },
     {
         productName: '防臭式鑄鐵蓋',
-        img:'/image/square_circle_1.png',
+        img:'/image/circle.png',
         size:"圓型 · 60cm∮ 70cm∮ 80cm∮"
     },
     {
         productName: '防臭式鑄鐵蓋',
-        img:'/image/square_1.png',
-        size:"方型 · 60x60cm∮ 70x70cm∮ 80x80cm∮"
+        img:'/image/circle_square.png',
+        size:"方框圓蓋 · 60x60cm∮ 70x70cm∮ 80x80cm∮"
     },
     {
         productName: '自設污水',
