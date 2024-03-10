@@ -23,7 +23,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> getAllProducts() {
-        String sqlfind = " SELECT id, des, product_pic, productname, size, spec_pic, traits FROM product";
+        String sqlfind = " SELECT id, des, product_pic, productname, size, spec_pic, traits, priority FROM product order by priority";
         List<Product> result = jdbcTemplate.query(sqlfind, new BeanPropertyRowMapper<Product>(Product.class));
 
         return result;
@@ -31,7 +31,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product getProductById(int id) {
-        String sqlfind = " SELECT id, des, product_pic, productname, size, spec_pic, traits " +
+        String sqlfind = " SELECT id, des, product_pic, productname, size, spec_pic, traits, priority " +
                 "FROM product" +
                 " WHERE id = " +
                 id;
@@ -42,10 +42,10 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public String addProduct(Product product) {
         String sqlCreat = " insert into product " +
-                "(productname, size, traits, des, product_pic, spec_pic)"
-                + " values (?, ?, ?, ?, ?, ?)";
+                "(productname, size, traits, des, product_pic, spec_pic, priority)"
+                + " values (?, ?, ?, ?, ?, ?, ?)";
 
-        int resultCreat = this.jdbcTemplate.update(sqlCreat, product.getProductname() ,product.getSize(), product.getTraits(), product.getDes(), product.getProduct_pic(), product.getSpec_pic());
+        int resultCreat = this.jdbcTemplate.update(sqlCreat, product.getProductname() ,product.getSize(), product.getTraits(), product.getDes(), product.getProduct_pic(), product.getSpec_pic(), product.getPriority());
 
         if (resultCreat != 0) {
             System.out.println(resultCreat);
@@ -66,10 +66,10 @@ public class ProductDaoImpl implements ProductDao {
     public int updateProduct ( Product product ){
         String sqlUpdate = " UPDATE product "
                 + " SET "
-                + "productname = ?, size = ?, traits = ?, des = ?, product_pic = ?, spec_pic = ?"
+                + "productname = ?, size = ?, traits = ?, des = ?, product_pic = ?, spec_pic = ?, priority = ?"
                 + " WHERE id = ? " ;
 
-        int Updatesuccess = this.jdbcTemplate.update(sqlUpdate, product.getProductname(), product.getSize(), product.getTraits(), product.getDes(), product.getProduct_pic(), product.getSpec_pic(), product.getId());
+        int Updatesuccess = this.jdbcTemplate.update(sqlUpdate, product.getProductname(), product.getSize(), product.getTraits(), product.getDes(), product.getProduct_pic(), product.getSpec_pic(), product.getPriority(), product.getId());
         return Updatesuccess;
 
     }

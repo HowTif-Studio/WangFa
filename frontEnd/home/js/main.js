@@ -1,14 +1,15 @@
 import "../scss/main.scss";
 import $ from "jquery";
+import axios from "axios";
 import {init as header} from "../../header/js/main";
 import {init as footer} from "../../footer/js/main";
 
 const htmlMap = {
     productBlock: (data) => {
       return `<div class="product-block">
-                <img class="product-img" src="${data.img}">
-                <div class="product-content">${data.productName}</div>
-                <div class="product-text">${data.size}</div>
+                <img class="product-img" src="${data.product_pic}">
+                <div class="product-content">${data.productname}</div>
+                <div class="product-text">${data.traits} · ${data.size}</div>
               </div>`
     }
 };
@@ -36,10 +37,22 @@ const mockData = [
     }
 ];
 
-const productRender = ($container) => {
-    mockData.forEach((data)=>{
-       let $productBlock = $(htmlMap.productBlock(data));
-       $container.append($productBlock);
+const productRender = async ($container) => {
+    let apiUri = "/api/product";
+    let productData = [];
+    await axios.get(apiUri)
+        .then((result)=>{
+            productData = result.data;
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+
+    productData.forEach((data, index)=>{
+        if(index < 4){
+            let $productBlock = $(htmlMap.productBlock(data));
+            $container.append($productBlock);
+        }
     });
 }
 

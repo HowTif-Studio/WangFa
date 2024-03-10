@@ -37,6 +37,9 @@ public class Product extends Base{
     @Column(name = "Spec_pic")
     private String Spec_pic;
 
+    @Column(name = "priority")
+    private int priority;
+
     public int getId() {
         return id;
     }
@@ -89,8 +92,15 @@ public class Product extends Base{
         return Spec_pic;
     }
 
-    public void setSpec_picture(String spec_pic) {
+    public void setSpec_pic(String spec_pic) {
         Spec_pic = spec_pic;
     }
 
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 }
