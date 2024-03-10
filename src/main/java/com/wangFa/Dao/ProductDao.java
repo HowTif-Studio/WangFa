@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface ProductDao {
 
-    public Product CreateProduct(Product product) ;
-
-    public String ReadProductId(Integer id);
-
     List<Product> getAllProducts();
 
-    public int UpdateProduct(Product product);
+    Product getProductById(int id);
 
-    public int DeleteProduct(Integer id);
+    String addProduct(Product product);
+
+    int updateProduct(Product product);
+
+    int deleteProduct(int id);
 
 }

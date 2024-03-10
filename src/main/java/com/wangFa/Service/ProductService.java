@@ -11,10 +11,10 @@ public interface ProductService {
 
     Product getProductById(int id);
 
-    Product addProduct(Product product);
+    String addProduct(Product product);
 
     int updateProduct(Product product);
 
-    int deleteProduct(int productId);
+    int deleteProduct(int id);
 
 }

@@ -27,8 +27,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = { "/product"}, method = RequestMethod.POST)
-    public Product addProduct(@RequestBody Product product) {
-        Product result = productService.addProduct(product);
+    public String addProduct(@RequestBody Product product) {
+        String result = productService.addProduct(product);
         return result;
     }
 
@@ -45,12 +45,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = { "/product/{id}"}, method = RequestMethod.DELETE)
-    public boolean deleteProduct(@PathVariable("id") int id) {
-        int deleteCount = productService.deleteProduct(id);
-        boolean result = false;
-        if(deleteCount > 0){
-            result = true;
-        }
+    public int deleteProduct(@PathVariable("id") int id) {
+        int result = productService.deleteProduct( id );
         return result;
     }
 

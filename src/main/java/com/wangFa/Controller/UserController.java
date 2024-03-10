@@ -1,8 +1,6 @@
 package com.wangFa.Controller;
 
-import com.wangFa.Dao.ProductDaoImpl;
 import com.wangFa.Dao.UserDao;
-import com.wangFa.Model.Product;
 import com.wangFa.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
