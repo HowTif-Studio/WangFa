@@ -37,15 +37,32 @@
     padding: 50px 0 90px 0;
     .product-block{
       width: 262px;
-      height: 500px;
+      height: 640px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
       form{
         .text{
+          height: 40px;
+          display: flex;
+          align-items: center;
           font-size: 18px;
           color: #415A77;
+
+        }
+        .fileBlock{
+          display: flex;
+          flex-direction: column;
+          height: 80px;
+          align-items: baseline;
+          justify-content: space-around;
+          font-size: 18px;
+          color: #415A77;
+          input[type=file]{
+            width: 100%;
+            border: none;
+          }
         }
         input {
           height: 30px;
@@ -55,10 +72,13 @@
           text-indent: 5px;
           font-size: 16px;
           display: inline-block;
-          margin-top: 10px;
         }
-        input[type=file]{
-          display: none;
+
+
+        .buttonBlock{
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
         input[type=button]{
           height: 30px;

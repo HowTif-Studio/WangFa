@@ -10,7 +10,8 @@ const htmlMap = {
                     <img class="product-img" src="${data.product_pic}">
                     <form method="post" enctype="multipart/form-data">
                         <div class="form">
-                            <div class="text">產品名稱：
+                            <div class="text">
+                                產品名稱：
                                 <input id="productname" value="${data.productname}"></input>
                             </div>
                             <div class="text">形狀：
@@ -20,16 +21,20 @@ const htmlMap = {
                                 <input id="size" value="${data.size}"></input>
                             </div>
                             
-                            <div class="text">產品圖：
+                            <div class="fileBlock">
+                                <label for="productspec_pic">產品圖：</label>
                                 <input type="file" name="img_spec" id="productspec_pic">
-                                <label for="productspec_pic">選擇檔案</label>
                             </div>
-                            <div class="text">規格圖：
+                            <div class="fileBlock">
+                                <label for="product_pic">規格圖：</label>
                                 <input type="file" name="img" id="product_pic">
-                                <label for="product_pic">選擇檔案</label>
                             </div>
-                            
-                            <input value='送出' type="button">
+                            <div class="text">優先序：
+                                <input id="priority" value="${data.priority}"></input>
+                            </div>
+                            <div class="buttonBlock">
+                                <input class="submit" value='送出' type="button">
+                            </div>
                         </div>
                     <from/>        
               </div>`
@@ -109,14 +114,27 @@ const productRender = ($container, productData) => {
     $container.empty();
     productData.forEach((data) => {
         let $productBlock = $(htmlMap.productBlock(data));
-        let $specImgButton = $productBlock.find('.product-specImg');
-        $specImgButton.on('click', () => {
-            console.log(data.productspec_pic);
-            let $spec_img = $(`<img src="${data.productspec_pic}">`);
-            $('.modal').find('.content').empty();
-            $('.modal').find('.content').append($spec_img);
-            $('.modal_container').show();
-        })
+        let $submit = $productBlock.find('.submit');
+
+        $submit.data("id", data.id);
+        $submit.on('click', async ()=>{
+            let $productname = $productBlock.find("#productname");
+            let $traits = $productBlock.find("#traits");
+            let $size = $productBlock.find("#size");
+            let $product_pic = $productBlock.find("#product_pic");
+            let $spec_pic = $productBlock.find("#spec_pic");
+            let $priority = $productBlock.find("#priority");
+            let updateData = {
+                id: data.id,
+                productname: $productname.val(),
+                traits: $traits.val(),
+                size: $size.val(),
+                product_pic: $product_pic.val(),
+                spec_pic: $spec_pic.val(),
+                priority: $priority.val()
+            }
+            await updateByProductData(updateData);
+        });
         $container.append($productBlock);
     });
 }
@@ -156,9 +174,19 @@ const getProductData = async ($container) => {
 
 
 // 取得單一筆資料
-const getProductDataByid = () => {
-
-    $('#productname').val();
+const updateByProductData = async (updateData) => {
+    let apiUrl = "/api/product";
+    await axios.put(apiUrl, updateData)
+        .then((result)=>{
+            if(result.data == true){
+                alert("更新成功");
+            } else {
+                alert("更新失敗");
+            }
+        })
+        .catch((error)=>{
+            console.log(error)
+        });
 
 }
 
