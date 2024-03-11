@@ -10,7 +10,7 @@ const htmlMap = {
                     <img class="product-img" src="${data.product_pic}">
                     <div class="product-name">${data.productname}</div>
                     <div class="product-spec">${data.traits} · ${data.size}</div>
-                    <button class="product-specImg" data-imgsrc="${data.productspec_pic}">產品規格圖</button>
+                    <button class="product-specImg" data-imgsrc="${data.productspec_pic}">產品規格圖 ></button>
                 </div>`
     }
 };
@@ -121,8 +121,16 @@ const bindFilterEvent = ($selector) => {
     });
 }
 
-const getProductData = () =>{
-    stateMap.productData = mockData;
+const getProductData = async ($container) =>{
+    let apiUri = "/api/product";
+
+    await axios.get(apiUri)
+        .then((result)=>{
+            stateMap.productData = result.data;
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
 }
 
 const bindModalCloseEvent = () =>{
@@ -131,11 +139,12 @@ const bindModalCloseEvent = () =>{
     });
 }
 
+
 //TODO: 彈跳視窗未完成
-$(window).on('load', function (){
+$(window).on('load', async function (){
     header();
     footer();
-    getProductData();
+    await getProductData();
     productRender($('.product-container'), stateMap.productData);
     bindFilterEvent($('.selector'));
     bindModalCloseEvent();

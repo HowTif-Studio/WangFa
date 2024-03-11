@@ -57,6 +57,7 @@ const productRender = async ($container) => {
 }
 
 
+//表單送出
 const bindSentEvent= () => {
     $('#sent').on('click', (e)=>{
         console.log('click!!')
@@ -64,7 +65,7 @@ const bindSentEvent= () => {
     });
 }
 
-//按下傳送按鈕後執行
+//表單送出：按下傳送按鈕後執行
 function getEmailData() {
     let $name_input = $('#name_input');
     let $email_input = $('#email_input');

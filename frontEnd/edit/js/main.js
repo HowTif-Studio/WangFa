@@ -2,6 +2,7 @@ import "../scss/main.scss";
 import $ from "jquery";
 import {init as header} from "../../header/js/main";
 import {init as footer} from "../../footer/js/main";
+import axios from "axios";
 
 const htmlMap = {
     productBlock: (data) => {
@@ -10,13 +11,13 @@ const htmlMap = {
                     <form method="post" enctype="multipart/form-data">
                         <div class="form">
                             <div class="text">產品名稱：
-                                <input value="${data.productName}"></input>
+                                <input id="productname" value="${data.productname}"></input>
                             </div>
                             <div class="text">形狀：
-                                <input value="${data.traits}"</input>
+                                <input id="traits" value="${data.traits}"</input>
                             </div>
                             <div class="text">尺寸：
-                                <input value="${data.size}"></input>
+                                <input id="size" value="${data.size}"></input>
                             </div>
                             
                             <div class="text">產品圖：
@@ -42,62 +43,62 @@ const stateMap = {
 const mockData = [
     {
         product_pic: '/image/square_1.png',
-        productName: '防臭式鑄鐵蓋',
+        productname: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '60*60',
         productspec_pic: '/image/square_1.png'
     },
     {
         product_pic: '/image/square_1.png',
-        productName: '防臭式鑄鐵蓋',
+        productname: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '70*70',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/square_1.png',
-        productName: '防臭式鑄鐵蓋',
+        productname: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '80*80',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/square_1.png',
-        productName: '防臭式鑄鐵蓋',
+        productname: '防臭式鑄鐵蓋',
         traits: '圓形',
         size: '60cm∮',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/square_1.png',
-        productName: '防臭式鑄鐵蓋',
+        productname: '防臭式鑄鐵蓋',
         traits: '圓形',
         size: '70cm∮',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/circle_1.png',
-        productName: '自設污水蓋',
+        productname: '自設污水蓋',
         traits: '圓形',
         size: '80cm∮',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/circle_1.png',
-        productName: '自設污水蓋',
+        productname: '自設污水蓋',
         traits: '方框圓蓋',
         size: '60x60cm∮',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/circle_1.png',
-        productName: '自設污水蓋',
+        productname: '自設污水蓋',
         traits: '方框圓蓋',
         size: '70x70cm∮',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/circle_1.png',
-        productName: '自設污水蓋',
+        productname: '自設污水蓋',
         traits: '方框圓蓋',
         size: '80x80cm∮',
         productspec_pic: '產品規格圖'
     }, {
         product_pic: '/image/circle_2.png',
-        productName: '自設污水蓋',
+        productname: '自設污水蓋',
         traits: '圓型',
         size: '60cm∮',
         productspec_pic: '產品規格圖'
@@ -130,7 +131,7 @@ const bindFilterEvent = ($selector) => {
                 newData = stateMap.productData;
             } else {
                 stateMap.productData.forEach((data) => {
-                    if (data.productName.includes($(item).text())) {
+                    if (data.productname.includes($(item).text())) {
                         newData.push(data)
                     }
                 });
@@ -141,8 +142,42 @@ const bindFilterEvent = ($selector) => {
     });
 }
 
-const getProductData = () => {
-    stateMap.productData = mockData;
+const getProductData = async ($container) => {
+    let apiUri = "/api/product";
+
+    await axios.get(apiUri)
+        .then((result)=>{
+            stateMap.productData = result.data;
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+}
+
+
+// 取得單一筆資料
+const getProductDataByid = () => {
+
+    $('#productname').val();
+
+}
+
+// 送出
+const sentEvent = ($container) => {
+    let apiUri = "/api/product"+id;
+
+    $('input[type=button]').on('click', async() => {
+
+        await axios.put(apiUri)
+
+        .then((result)=>{
+            stateMap.productData = result.data;
+        })
+        .catch((error)=>{
+            console.log(error);
+            }
+        );
+    });
 }
 
 const bindModalCloseEvent = () => {
@@ -151,11 +186,10 @@ const bindModalCloseEvent = () => {
     });
 }
 
-//TODO: 彈跳視窗未完成
-$(window).on('load', function () {
+$(window).on('load', async function () {
     header();
     footer();
-    getProductData();
+    await getProductData();
     productRender($('.product-container'), stateMap.productData);
     bindFilterEvent($('.selector'));
     bindModalCloseEvent();
@@ -163,9 +197,8 @@ $(window).on('load', function () {
 
 
 // 上傳
-
-    function upload() {
-// ？？？創建一個 FormData 物件
+    function picUpload() {
+// 創建一個 FormData 物件
         var updateSpec = new FormData();
         var update = new FormData();
 
