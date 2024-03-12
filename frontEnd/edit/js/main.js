@@ -5,39 +5,39 @@ import {init as footer} from "../../footer/js/main";
 import axios from "axios";
 
 const htmlMap = {
-    productBlock: (data) => {
+    productBlock: (data, index) => {
         return `<div class="product-block">
-                    <img class="product-img" src="${data.product_pic}">
+                    <img class="product-img" src="${!!data ? data.product_pic : ''}">
                     <form method="post" enctype="multipart/form-data">
                         <div class="form">
                             <div class="text">
                                 產品名稱：
-                                <input id="productname" value="${data.productname}">
+                                <input id="productname" value="${!!data ? data.productname : ''}">
                             </div>
                             <div class="text">形狀：
-                                <input id="traits" value="${data.traits}"</input>
+                                <input id="traits" value="${!!data ? data.traits : ''}"</input>
                             </div>
                             <div class="text">尺寸：
-                                <input id="size" value="${data.size}">
+                                <input id="size" value="${!!data ? data.size: ''}">
                             </div>
                             <div class="fileBlock">
                                 <div class="text">產品圖：</div>
                                 <div class="choose">
-                                    <label for="product_pic">選擇檔案</label>
-                                    <input type="file" name="img" id="product_pic">
-                                    <input type="text" name="img_path" id="product_pic_path" value="${data.product_pic}">
+                                    <label for="product_pic_${!!index ? index : 'create'}">選擇檔案</label>
+                                    <input type="file" name="img" class="product_pic" id="product_pic_${!!index ? index : 'create'}">
+                                    <input type="text" name="img_path" class="product_pic_path" id="product_pic_path" value="${!!data ? data.product_pic : ''}">
                                 </div>
                             </div>
                             <div class="fileBlock">
                                 <div class="text">規格圖：</div>
                                 <div class="choose">
-                                    <label for="spec_pic">選擇檔案</label>
-                                    <input type="file" name="img_spec" id="spec_pic">
-                                    <input type="text" name="img_spec_path" id="img_spec_path" value="${data.spec_pic}">
+                                    <label for="spec_pic_${!!index ? index : 'create'}">選擇檔案</label>
+                                    <input type="file" name="img_spec" class="spec_pic" id="spec_pic_${!!index ? index : 'create'}">
+                                    <input type="text" name="img_spec_path" class="img_spec_path" id="img_spec_path" value="${!!data ? data.spec_pic : ''}">
                                 </div>
                             </div>
                             <div class="text">優先序：
-                                <input id="priority" value="${data.priority}">
+                                <input id="priority" value="${!!data ? data.priority : ''}">
                             </div>
                             <div class="buttonBlock">
                                 <input id="submit" value='送出' type="button">
@@ -121,15 +121,13 @@ const mockData = [
 
 const productRender = ($container, productData) => {
     $container.empty();
-    productData.forEach((data) => {
-        let $productBlock = $(htmlMap.productBlock(data));
-        let $productImgButton = $productBlock.find('#product_pic');
-        let $specImgButton = $productBlock.find('#spec_pic');
+    productData.forEach((data, index) => {
+        let $productBlock = $(htmlMap.productBlock(data, index+=2));
+        let $productImgButton = $productBlock.find('.product_pic');
+        let $specImgButton = $productBlock.find('.spec_pic');
         let $submit = $productBlock.find('#submit');
         let $delete = $productBlock.find('#delete');
-        // let $create = $productBlock.find('#create');
 
-        // $productImgButton.on('click', picUpload);
         $productImgButton.change(picUpload);
         $specImgButton.change(picUpload);
 
@@ -156,10 +154,6 @@ const productRender = ($container, productData) => {
             await deleteProductData(data.id);
         });
 
-        // $create.on('click', async ()=>{
-        //     await createProductData();
-        // });
-
         $container.append($productBlock);
 
     });
@@ -185,6 +179,45 @@ const bindFilterEvent = ($selector) => {
         });
     });
 }
+
+// 新增
+const bindCreateEvent = ($container) => {
+    $("#create").on('click', ()=>{
+        let $newProductBlock = $(htmlMap.productBlock());
+        let $sentButton = $(`<input id="add" value='新增' type="button">`);
+        let $productImgButton = $newProductBlock.find('#product_pic_create');
+        let $specImgButton = $newProductBlock.find('#spec_pic_create');
+
+        $newProductBlock.find('#submit').remove();
+        $newProductBlock.find('#delete').remove();
+
+
+
+        $productImgButton.change(picUpload);
+        $specImgButton.change(picUpload);
+
+        $sentButton.on('click', async ()=>{
+            let $productname = $newProductBlock.find("#productname");
+            let $traits = $newProductBlock.find("#traits");
+            let $size = $newProductBlock.find("#size");
+            let $product_pic = $newProductBlock.find("#product_pic_path");
+            let $spec_pic = $newProductBlock.find("#img_spec_path");
+            let $priority = $newProductBlock.find("#priority");
+            let newProductData = {
+                productname: $productname.val(),
+                traits: $traits.val(),
+                size: $size.val(),
+                product_pic: $product_pic.val(),
+                spec_pic: $spec_pic.val(),
+                priority: $priority.val()
+            };
+            await createProductData(newProductData);
+        });
+
+        $newProductBlock.find('.buttonBlock').append($sentButton);
+        $container.append($newProductBlock);
+    });
+};
 // 即時更新
 const reRenderProduct = async () =>{
     await getProductData();
@@ -240,12 +273,13 @@ const updateByProductData = async (updateData) => {
 }
 
 // 新增
-const createProductData = async () => {
+const createProductData = async (data) => {
     let apiUrl = "/api/product";
-    await axios.post(apiUrl)
-        .then((result)=>{
+    await axios.post(apiUrl, data)
+        .then( async (result)=>{
             if(result.data){
                 alert("新增成功");
+                await reRenderProduct();
             } else {
                 alert("新增失敗");
             }
@@ -255,6 +289,7 @@ const createProductData = async () => {
         });
 }
 
+// 上傳圖片
 const picUpload = (e) =>{
     let $this = $(e.target);
     let $filePath = $this.siblings("input[type='text']");
@@ -289,58 +324,5 @@ $(window).on('load', async function () {
     productRender($('.product-container'), stateMap.productData);
     bindFilterEvent($('.selector'));
     bindModalCloseEvent();
+    bindCreateEvent($('.product-container'));
 });
-
-
-// 上傳
-//     function picUpload() {
-// // 創建一個 FormData 物件
-//         var formData = new FormData();
-//         var update = new FormData();
-//
-//         // 向 updateDat 物件中添加鍵值對，鍵為 'file'，值是 input 標籤中選擇的檔案
-//         updateSpec.append('img_spec', $("#productspec_pic")[0].files[0]);
-//         update.append('img', $("#product_pic")[0].files[0]);
-//
-//         var updateSpec = $("#productspec_pic")[0].files[0];
-//         var update = $("#product_pic")[0].files[0];
-//
-//
-//     if (updateSpec == null) {
-//         alert("請選擇圖片");
-//         return false;
-//     } else {
-//         // 使用 AJAX 函式發送 HTTP POST 請求
-//         $.ajax({
-//             // 指定請求的目標 URL
-//             url: "/upload",
-//             // 指定請求方法為 POST
-//             type: "POST",
-//             // 設置請求的數據為 FormData 物件，即所選檔案
-//             data: myform,
-//             // 設置為同步請求，等待服務器響應後再執行後續的程式碼
-//             async: false,
-//             // 禁止設置請求頭的 Content-Type，由瀏覽器自動設置
-//             contentType: false,
-//             // 禁止將數據轉換為查詢字符串，由於我們使用 FormData，因此不需要進行轉換
-//             processData: false,
-//             // 定義請求成功後的回調函式，處理服務器的響應數據
-//             success: function (result) {
-//                 console.log(result);
-//                 // 提示用戶上傳成功
-//                 alert("上傳成功！");
-//                 // 在網頁中展示上傳的圖片
-//                 $("#div_show_img").html("<img id='input_img' src='" + result + "'>");
-//                 // 將上傳的圖片路徑設置到隱藏的 input 標籤中
-//                 $("#imgPath").attr("value", result);
-//                 // 移除上傳圖片區域的顯示
-//                 $("#div_upload").removeClass("show");
-//             },
-//             // 定義請求失敗時的回調函式，處理錯誤情況
-//             error: function (data) {
-//                 // 提示用戶錯誤訊息
-//                 alert("錯誤");
-//             }
-//         });
-//     }
-//     }
