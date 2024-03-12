@@ -12,33 +12,40 @@ const htmlMap = {
                         <div class="form">
                             <div class="text">
                                 產品名稱：
-                                <input id="productname" value="${data.productname}"></input>
+                                <input id="productname" value="${data.productname}">
                             </div>
                             <div class="text">形狀：
                                 <input id="traits" value="${data.traits}"</input>
                             </div>
                             <div class="text">尺寸：
-                                <input id="size" value="${data.size}"></input>
-                            </div>
-                            
-                            <div class="fileBlock">
-                                <label for="productspec_pic">產品圖：</label>
-                                <input type="file" name="img_spec" id="productspec_pic">
+                                <input id="size" value="${data.size}">
                             </div>
                             <div class="fileBlock">
-                                <label for="product_pic">規格圖：</label>
-                                <input type="file" name="img" id="product_pic">
+                                <div class="text">產品圖：</div>
+                                <div class="choose">
+                                    <label for="product_pic">選擇檔案</label>
+                                    <input type="file" name="img" id="product_pic">
+                                    <input type="text" name="img_path" id="product_pic_path" value="${data.product_pic}">
+                                </div>
+                            </div>
+                            <div class="fileBlock">
+                                <div class="text">規格圖：</div>
+                                <div class="choose">
+                                    <label for="spec_pic">選擇檔案</label>
+                                    <input type="file" name="img_spec" id="spec_pic">
+                                    <input type="text" name="img_spec_path" id="img_spec_path" value="${data.spec_pic}">
+                                </div>
                             </div>
                             <div class="text">優先序：
-                                <input id="priority" value="${data.priority}"></input>
+                                <input id="priority" value="${data.priority}">
                             </div>
                             <div class="buttonBlock">
-                                <input class="submit" value='送出' type="button">
-                                <input class="delete" value='刪除' type="button">
+                                <input id="submit" value='送出' type="button">
+                                <input id="delete" value='刪除' type="button">
                             </div>
                         </div>
                     <from/>        
-              </div>`
+              </div>`;
     }
 };
 
@@ -116,16 +123,22 @@ const productRender = ($container, productData) => {
     $container.empty();
     productData.forEach((data) => {
         let $productBlock = $(htmlMap.productBlock(data));
+        let $productImgButton = $productBlock.find('#product_pic');
+        let $specImgButton = $productBlock.find('#spec_pic');
         let $submit = $productBlock.find('#submit');
         let $delete = $productBlock.find('#delete');
         // let $create = $productBlock.find('#create');
+
+        // $productImgButton.on('click', picUpload);
+        $productImgButton.change(picUpload);
+        $specImgButton.change(picUpload);
 
         $submit.on('click', async ()=>{
             let $productname = $productBlock.find("#productname");
             let $traits = $productBlock.find("#traits");
             let $size = $productBlock.find("#size");
-            let $product_pic = $productBlock.find("#product_pic");
-            let $spec_pic = $productBlock.find("#spec_pic");
+            let $product_pic = $productBlock.find("#product_pic_path");
+            let $spec_pic = $productBlock.find("#img_spec_path");
             let $priority = $productBlock.find("#priority");
             let updateData = {
                 id: data.id,
@@ -242,6 +255,26 @@ const createProductData = async () => {
         });
 }
 
+const picUpload = (e) =>{
+    let $this = $(e.target);
+    let $filePath = $this.siblings("input[type='text']");
+    let fileData = $this[0].files[0];
+    if(fileData === null || fileData === undefined){
+        alert("尚未上傳圖片");
+        return false;
+    } else {
+        let uploadData = new FormData();
+        uploadData.append('file', fileData);
+        axios.post("/upload", uploadData).then((result)=>{
+            let newFilePath = result.data;
+            $filePath.val(newFilePath);
+        }).catch((error)=>{
+            alert("上傳失敗");
+           console.log(error)
+        });
+    }
+
+};
 
 const bindModalCloseEvent = () => {
     $('.modal').find('.close').on('click', () => {
@@ -260,54 +293,54 @@ $(window).on('load', async function () {
 
 
 // 上傳
-    function picUpload() {
-// 創建一個 FormData 物件
-        var updateSpec = new FormData();
-        var update = new FormData();
-
-        // 向 updateDat 物件中添加鍵值對，鍵為 'file'，值是 input 標籤中選擇的檔案
-        updateSpec.append('img_spec', $("#productspec_pic")[0].files[0]);
-        update.append('img', $("#product_pic")[0].files[0]);
-
-        var updateSpec = $("#productspec_pic")[0].files[0];
-        var update = $("#product_pic")[0].files[0];
-
-
-    if (updateSpec == null) {
-        alert("請選擇圖片");
-        return false;
-    } else {
-        // 使用 AJAX 函式發送 HTTP POST 請求
-        $.ajax({
-            // 指定請求的目標 URL
-            url: "/upload",
-            // 指定請求方法為 POST
-            type: "POST",
-            // 設置請求的數據為 FormData 物件，即所選檔案
-            data: myform,
-            // 設置為同步請求，等待服務器響應後再執行後續的程式碼
-            async: false,
-            // 禁止設置請求頭的 Content-Type，由瀏覽器自動設置
-            contentType: false,
-            // 禁止將數據轉換為查詢字符串，由於我們使用 FormData，因此不需要進行轉換
-            processData: false,
-            // 定義請求成功後的回調函式，處理服務器的響應數據
-            success: function (result) {
-                console.log(result);
-                // 提示用戶上傳成功
-                alert("上傳成功！");
-                // 在網頁中展示上傳的圖片
-                $("#div_show_img").html("<img id='input_img' src='" + result + "'>");
-                // 將上傳的圖片路徑設置到隱藏的 input 標籤中
-                $("#imgPath").attr("value", result);
-                // 移除上傳圖片區域的顯示
-                $("#div_upload").removeClass("show");
-            },
-            // 定義請求失敗時的回調函式，處理錯誤情況
-            error: function (data) {
-                // 提示用戶錯誤訊息
-                alert("錯誤");
-            }
-        });
-    }
-    }
+//     function picUpload() {
+// // 創建一個 FormData 物件
+//         var formData = new FormData();
+//         var update = new FormData();
+//
+//         // 向 updateDat 物件中添加鍵值對，鍵為 'file'，值是 input 標籤中選擇的檔案
+//         updateSpec.append('img_spec', $("#productspec_pic")[0].files[0]);
+//         update.append('img', $("#product_pic")[0].files[0]);
+//
+//         var updateSpec = $("#productspec_pic")[0].files[0];
+//         var update = $("#product_pic")[0].files[0];
+//
+//
+//     if (updateSpec == null) {
+//         alert("請選擇圖片");
+//         return false;
+//     } else {
+//         // 使用 AJAX 函式發送 HTTP POST 請求
+//         $.ajax({
+//             // 指定請求的目標 URL
+//             url: "/upload",
+//             // 指定請求方法為 POST
+//             type: "POST",
+//             // 設置請求的數據為 FormData 物件，即所選檔案
+//             data: myform,
+//             // 設置為同步請求，等待服務器響應後再執行後續的程式碼
+//             async: false,
+//             // 禁止設置請求頭的 Content-Type，由瀏覽器自動設置
+//             contentType: false,
+//             // 禁止將數據轉換為查詢字符串，由於我們使用 FormData，因此不需要進行轉換
+//             processData: false,
+//             // 定義請求成功後的回調函式，處理服務器的響應數據
+//             success: function (result) {
+//                 console.log(result);
+//                 // 提示用戶上傳成功
+//                 alert("上傳成功！");
+//                 // 在網頁中展示上傳的圖片
+//                 $("#div_show_img").html("<img id='input_img' src='" + result + "'>");
+//                 // 將上傳的圖片路徑設置到隱藏的 input 標籤中
+//                 $("#imgPath").attr("value", result);
+//                 // 移除上傳圖片區域的顯示
+//                 $("#div_upload").removeClass("show");
+//             },
+//             // 定義請求失敗時的回調函式，處理錯誤情況
+//             error: function (data) {
+//                 // 提示用戶錯誤訊息
+//                 alert("錯誤");
+//             }
+//         });
+//     }
+//     }

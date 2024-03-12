@@ -86,14 +86,31 @@
         .fileBlock{
           display: flex;
           flex-direction: column;
-          height: 80px;
+          height: 70px;
           align-items: baseline;
           justify-content: space-around;
           font-size: 18px;
           color: #415A77;
-          input[type=file]{
-            width: 100%;
-            border: none;
+          .choose{
+            display: flex;
+            align-items: center;
+            label{
+              width: 80px;
+              background-color: #415A77;
+              color: #FFFFFF;
+              border-radius: 4px;
+              margin-right: 4px;
+              font-size: 16px;
+              line-height: 26px;
+              text-align: center;
+            }
+            input[type=file]{
+              display: none;
+            }
+            input[type=text]{
+              width: calc(100% - 75px);
+              border: 1px solid #E0E1DD;
+            }
           }
         }
         input {
@@ -104,6 +121,9 @@
           text-indent: 5px;
           font-size: 16px;
           display: inline-block;
+        }
+        #priority{
+          margin-top: 5px;
         }
 
 
