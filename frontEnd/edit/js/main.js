@@ -34,6 +34,7 @@ const htmlMap = {
                             </div>
                             <div class="buttonBlock">
                                 <input class="submit" value='送出' type="button">
+                                <input class="delete" value='刪除' type="button">
                             </div>
                         </div>
                     <from/>        
@@ -110,13 +111,15 @@ const mockData = [
     },
 ];
 
+
 const productRender = ($container, productData) => {
     $container.empty();
     productData.forEach((data) => {
         let $productBlock = $(htmlMap.productBlock(data));
-        let $submit = $productBlock.find('.submit');
+        let $submit = $productBlock.find('#submit');
+        let $delete = $productBlock.find('#delete');
+        // let $create = $productBlock.find('#create');
 
-        $submit.data("id", data.id);
         $submit.on('click', async ()=>{
             let $productname = $productBlock.find("#productname");
             let $traits = $productBlock.find("#traits");
@@ -135,12 +138,22 @@ const productRender = ($container, productData) => {
             }
             await updateByProductData(updateData);
         });
+
+        $delete.on('click', async ()=>{
+            await deleteProductData(data.id);
+        });
+
+        // $create.on('click', async ()=>{
+        //     await createProductData();
+        // });
+
         $container.append($productBlock);
+
     });
 }
-
+// 篩選
 const bindFilterEvent = ($selector) => {
-    let $items = $selector.find('.item');
+    let $items = $selector.find('#submit');
     $items.each((index, item) => {
         $(item).on('click', () => {
             let newData = [];
@@ -159,7 +172,31 @@ const bindFilterEvent = ($selector) => {
         });
     });
 }
+// 即時更新
+const reRenderProduct = async () =>{
+    await getProductData();
+    productRender($('.product-container'), stateMap.productData);
+}
 
+// 刪除
+const  deleteProductData = async (id) => {
+    let apiUri = "/api/product/" + id ;
+
+    await axios.delete(apiUri)
+        .then( async (result) => {
+            if (result.data) {
+                alert("刪除成功");
+                await reRenderProduct();
+            } else {
+                alert("刪除失敗");
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+}
+
+// 取得所有資料
 const getProductData = async ($container) => {
     let apiUri = "/api/product";
 
@@ -187,26 +224,24 @@ const updateByProductData = async (updateData) => {
         .catch((error)=>{
             console.log(error)
         });
-
 }
 
-// 送出
-const sentEvent = ($container) => {
-    let apiUri = "/api/product"+id;
-
-    $('input[type=button]').on('click', async() => {
-
-        await axios.put(apiUri)
-
+// 新增
+const createProductData = async () => {
+    let apiUrl = "/api/product";
+    await axios.post(apiUrl)
         .then((result)=>{
-            stateMap.productData = result.data;
+            if(result.data){
+                alert("新增成功");
+            } else {
+                alert("新增失敗");
+            }
         })
         .catch((error)=>{
-            console.log(error);
-            }
-        );
-    });
+            console.log(error)
+        });
 }
+
 
 const bindModalCloseEvent = () => {
     $('.modal').find('.close').on('click', () => {
