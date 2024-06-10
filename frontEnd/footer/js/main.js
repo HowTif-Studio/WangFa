@@ -5,7 +5,7 @@ const htmlMap = {
     main: `<div class="info">
               <div class="logo"></div>
               <ul class="left">
-                <li>電話 ：(02)2694-5249</li>
+                <li>電話 ：(02)2694-5209</li>
                 <li>傳真 ：(02)2693-5200</li>
                 <li>行動電話 ：0932-022-737</li>
               </ul>
