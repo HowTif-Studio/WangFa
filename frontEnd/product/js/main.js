@@ -10,7 +10,7 @@ const htmlMap = {
                     <img class="product-img" src="${data.product_pic}">
                     <div class="product-name">${data.productname}</div>
                     <div class="product-spec">${data.traits} · ${data.size}</div>
-                    <button class="product-specImg" data-imgsrc="${data.productspec_pic}">產品規格圖 ></button>
+                    <button class="product-specImg" data-imgsrc="${data.spec_pic}">產品規格圖 ></button>
                 </div>`
     }
 };
@@ -25,62 +25,62 @@ const mockData = [
         productname: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '60*60',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },
     {
         product_pic:'/image/70_square.png',
         productname: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '70*70',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/80_square.png',
         productname: '防臭式鑄鐵蓋',
         traits: '方型',
         size: '80*80',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/60_circle.png',
         productname: '防臭式鑄鐵蓋',
         traits: '圓形',
         size: '60cm∮',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/70_circle.png',
         productname: '防臭式鑄鐵蓋',
         traits: '圓形',
         size: '70cm∮',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/80_circle.png',
         productname: '自設污水蓋',
         traits: '圓形',
         size: '80cm∮',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/60_circle_square.png',
         productname: '自設污水蓋',
         traits: '方框圓蓋',
         size: '60x60cm∮',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/70_circle_square.png',
         productname: '自設污水蓋',
         traits: '方框圓蓋',
         size: '70x70cm∮',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/80_circle_square.png',
         productname: '自設污水蓋',
         traits: '方框圓蓋',
         size: '80x80cm∮',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },{
         product_pic:'/image/circle_2.png',
         productname: '自設污水蓋',
         traits: '圓型',
         size: '60cm∮',
-        productspec_pic: '/image/specImg.jpeg'
+        spec_pic: '/image/specImg.jpeg'
     },
 
 ];
@@ -91,7 +91,7 @@ const productRender = ($container, productData) => {
         let $productBlock = $(htmlMap.productBlock(data));
         let $specImgButton = $productBlock.find('.product-specImg');
         $specImgButton.on('click',()=>{
-            let $spec_img = $(`<img src="${data.productspec_pic}">`);
+            let $spec_img = $(`<img src="${data.spec_pic}">`);
             $('.modal').find('.content').empty();
             $('.modal').find('.content').append($spec_img);
             $('.modal_container').show();
